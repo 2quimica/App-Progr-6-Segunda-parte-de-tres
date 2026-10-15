@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Progresión 6 - Parte 2: Espectro Electromagnético y Fotones</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #0d9488;
+            --secondary-light: #ccfbf1;
+            --accent: #7c3aed;
+            --accent-light: #ede9fe;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --success: #16a34a;
+            --success-light: #dcfce7;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            user-select: none;
+        }
+
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .app-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            background-color: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .student-info-chip {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            max-width: 180px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        main {
+            flex: 1;
+            padding: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        h1 {
+            font-size: 1.35rem;
+            line-height: 1.3;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .highlight-box {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .alert-box {
+            background-color: var(--warning-light);
+            border-left: 4px solid var(--warning);
+            padding: 12px 16px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: #78350f;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background-color: #fff;
+            color: var(--text-main);
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+            text-align: center;
+            gap: 8px;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .option-card {
+            background: #ffffff;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .option-card.correct {
+            border-color: var(--success);
+            background-color: var(--success-light);
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .option-card.incorrect {
+            border-color: var(--danger);
+            background-color: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .option-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option-card.selected .option-radio {
+            border-color: var(--primary);
+            background-color: var(--primary);
+        }
+
+        .option-card.selected .option-radio::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .interactive-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            background-color: var(--bg-main);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-sm);
+            min-height: 60px;
+            margin-bottom: 16px;
+        }
+
+        .chip {
+            background-color: #ffffff;
+            border: 1.5px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+
+        .chip.selected {
+            background-color: var(--primary);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .drop-zone {
+            background-color: #ffffff;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            margin-bottom: 12px;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .drop-zone-header {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .drop-zone-content {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .svg-container {
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+            margin: 14px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;
+        }
+
+        .svg-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .quiz-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-nav-item {
+            padding: 8px 0;
+            text-align: center;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quiz-nav-item.current {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .quiz-nav-item.answered {
+            background-color: #e0f2fe;
+            border-color: #0284c7;
+            color: #0369a1;
+        }
+
+        .evidence-card {
+            background-color: #ffffff;
+            border: 3px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .evidence-header {
+            text-align: center;
+            border-bottom: 2px dashed var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        .evidence-header h2 {
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .evidence-header .subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .evidence-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 4px;
+        }
+
+        .evidence-label {
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .evidence-value {
+            font-weight: 800;
+            color: var(--text-main);
+            text-align: right;
+        }
+
+        .evidence-score-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            margin: 14px 0;
+        }
+
+        .evidence-score-badge .score-num {
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .evidence-score-badge .score-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .evidence-reflection {
+            background-color: var(--bg-main);
+            border-radius: var(--radius-sm);
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-style: italic;
+            border-left: 3px solid var(--accent);
+            margin-top: 10px;
+        }
+
+        .whatsapp-banner {
+            background-color: #22c55e;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.92rem;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .reorder-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 14px 0;
+        }
+
+        .reorder-item {
+            background-color: #ffffff;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .reorder-controls {
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-mini {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .review-item {
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-q-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .review-ans {
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .review-exp {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background-color: var(--bg-main);
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <span class="app-badge">Progresión 6 — Parte 2 de 3</span>
+            <span class="student-info-chip" id="header-student-name">Invitado</span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+    </header>
+
+    <main id="app-content">
+        <!-- Rendered dynamically by JavaScript -->
+    </main>
+
+    <script>
+        const STATE_KEY = 'EMS_PHYSICS_P6B_STATE_V2';
+
+        let state = {
+            step: 'START', // START, MSG, STUDY_1, ACT_1, STUDY_2, ACT_2, STUDY_3, ACT_3, QUIZ, REFLECTION, RESULTS
+            studentName: '',
+            studentGroup: '',
+            startTime: '',
+            finishTime: '',
+            
+            // Activity 1: Reorder spectrum (Low energy to high energy)
+            act1UserOrder: [
+                { id: 'gamma', label: 'Rayos Gamma', energyOrder: 7 },
+                { id: 'radio', label: 'Ondas de Radio', energyOrder: 1 },
+                { id: 'uv', label: 'Ultravioleta (UV)', energyOrder: 5 },
+                { id: 'micro', label: 'Microondas', energyOrder: 2 },
+                { id: 'xray', label: 'Rayos X', energyOrder: 6 },
+                { id: 'vis', label: 'Luz Visible', energyOrder: 4 },
+                { id: 'ir', label: 'Infrarrojo', energyOrder: 3 }
+            ],
+            act1Checked: false,
+            act1Correct: false,
+            act1Attempts: 0,
+
+            // Activity 2: Photon Model E = h * f Check
+            act2Selected: null,
+            act2Checked: false,
+            act2Correct: false,
+            act2Attempts: 0,
+
+            // Activity 3: Classification (Ionizing vs Non-Ionizing)
+            act3Bank: [
+                { id: 'r1', text: 'Ondas de Radio / Wi-Fi', cat: 'non-ionizing' },
+                { id: 'r2', text: 'Rayos X médicos', cat: 'ionizing' },
+                { id: 'r3', text: 'Luz Visible de una lámpara', cat: 'non-ionizing' },
+                { id: 'r4', text: 'Rayos Gamma (Núcleos atómicos)', cat: 'ionizing' },
+                { id: 'r5', text: 'Infrarrojo (Calor de una fogata)', cat: 'non-ionizing' },
+                { id: 'r6', text: 'Ultravioleta C (UV de alta energía)', cat: 'ionizing' }
+            ],
+            act3NonIonizingSlots: [],
+            act3IonizingSlots: [],
+            act3SelectedChip: null,
+            act3Checked: false,
+            act3Correct: false,
+            act3Attempts: 0,
+
+            // Quiz State (10 items)
+            quizCurrentIndex: 0,
+            quizAnswers: Array(10).fill(null),
+            quizSubmitted: false,
+            quizScore: 0,
+
+            // Reflection State
+            finalReflection: '',
+            hardestConcept: 'Ninguno'
+        };
+
+        function loadSavedState() {
+            try {
+                const saved = localStorage.getItem(STATE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    state = { ...state, ...parsed };
+                }
+            } catch (e) {
+                console.warn('localStorage access failed or restricted. Operating in-memory.', e);
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STATE_KEY, JSON.stringify(state));
+            } catch (e) {
+                console.warn('Failed to save to localStorage.', e);
+            }
+        }
+
+        const QUIZ_QUESTIONS = [
+            {
+                question: "1. ¿Qué parámetro de una onda electromagnética determina de manera directa la cantidad de energía que transporta cada uno de sus fotones?",
+                options: [
+                    "A) Su amplitud de onda en el espacio",
+                    "B) Su velocidad de propagación en el vacío",
+                    "C) Su frecuencia (f)",
+                    "D) El tamaño del emisor que la genera"
+                ],
+                correct: 2,
+                explanation: "De acuerdo con la ecuación de Planck (E = h · f), la energía de un fotón es directamente proporcional a la frecuencia de la onda electromagnética."
+            },
+            {
+                question: "2. ¿Cuál de las siguientes opciones ordena adecuadamente la radiación electromagnética de MENOR a MAYOR energía?",
+                options: [
+                    "A) Rayos Gamma → Rayos X → Luz Visible → Radio",
+                    "B) Ondas de Radio → Infrarrojo → Luz Visible → Rayos X",
+                    "C) Luz Visible → Microondas → Ultravioleta → Rayos Gamma",
+                    "D) Infrarrojo → Ondas de Radio → Rayos X → Ultravioleta"
+                ],
+                correct: 1,
+                explanation: "Las ondas de radio poseen las frecuencias más bajas (menor energía), seguidas por el infrarrojo, la luz visible y finalmente los rayos X (alta frecuencia y energía)."
+            },
+            {
+                question: "3. En el modelo corpuscular de la radiación electromagnética, ¿qué es un 'fotón'?",
+                options: [
+                    "A) Un electrón que viaja en un circuito eléctrico",
+                    "B) Una partícula de materia con masa gravitacional pesada",
+                    "C) Un 'paquete' indivisible o cuanto de energía electromagnética",
+                    "D) Una molécula de aire que vibra por el calor"
+                ],
+                correct: 2,
+                explanation: "Un fotón es la unidad fundamental o paquete indivisible (cuanto) de la radiación electromagnética que transporta energía."
+            },
+            {
+                question: "4. Si la frecuencia (f) de una onda electromagnética se DUPLICA, ¿qué le ocurre a la energía (E) de sus fotones?",
+                options: [
+                    "A) Se reduce a la mitad",
+                    "B) Permanecerá exactamente igual",
+                    "C) Se cuadruplica",
+                    "D) Se duplica"
+                ],
+                correct: 3,
+                explanation: "Como la relación E = h · f es linealmente proporcional, si la frecuencia se duplica, la energía por fotón se duplica automáticamente."
+            },
+            {
+                question: "5. ¿Qué característica distingue fundamentalmente a la radiación IONIZANTE de la NO IONIZANTE?",
+                options: [
+                    "A) La radiación ionizante no puede viajar por el aire",
+                    "B) La radiación ionizante posee suficiente energía por fotón para arrancar electrones de átomos y moléculas",
+                    "C) La radiación no ionizante siempre es de color rojo brillante",
+                    "D) La radiación ionizante no tiene nada que ver con los fotones"
+                ],
+                correct: 1,
+                explanation: "La radiación ionizante (como Rayos X y Gamma) está formada por fotones de tan alta energía que pueden expulsar electrones de los átomos con los que interactúan."
+            },
+            {
+                question: "6. Un teléfono celular emite ondas de radio y microondas para comunicarse. ¿A qué categoría de radiación corresponden estas emisiones?",
+                options: [
+                    "A) Radiación Ionizante destructiva de ADN",
+                    "B) Radiación No Ionizante de baja energía",
+                    "C) Rayos Gamma concentrados",
+                    "D) Partículas nucleares de alta energía"
+                ],
+                correct: 1,
+                explanation: "Las emisiones de radio y microondas del celular son radiación no ionizante; sus fotones no tienen suficiente energía para alterar átomos o romper enlaces moleculares."
+            },
+            {
+                question: "7. ¿Por qué el calor radiante que sentimos al acercar las manos a una fogata se clasifica dentro del espectro electromagnético?",
+                options: [
+                    "A) Porque es radiación Ultravioleta de alta energía",
+                    "B) Porque es radiación Infrarroja emitida por la agitación térmica de los átomos",
+                    "C) Porque es un haz de Rayos X de baja intensidad",
+                    "D) Porque la fogata solo emite ondas de radio"
+                ],
+                correct: 1,
+                explanation: "La radiación infrarroja es responsable del transporte de calor radiante y se sitúa justo por debajo de la frecuencia de la luz roja visible."
+            },
+            {
+                question: "8. ¿Qué relación existe entre la longitud de onda (distancia entre crestas) y la energía de un fotón?",
+                options: [
+                    "A) A mayor longitud de onda, MENOR energía tiene el fotón",
+                    "B) A mayor longitud de onda, MAYOR energía tiene el fotón",
+                    "C) La longitud de onda y la energía no tienen ninguna relación",
+                    "D) A menor longitud de onda, menor frecuencia y mayor energía"
+                ],
+                correct: 0,
+                explanation: "A mayor longitud de onda, menor es la frecuencia. Por lo tanto, mayor longitud de onda implica fotones de menor energía."
+            },
+            {
+                question: "9. Los Rayos X utilizados en radiografías médicas son un ejemplo de radiación de alta energía. ¿Qué precaución científica se deriva de su naturaleza?",
+                options: [
+                    "A) Ninguna, porque los Rayos X son invisibles y por tanto inofensivos",
+                    "B) Se requiere protección y uso medido debido a su capacidad ionizante sobre el tejido biológico",
+                    "C) Deben evitarse porque congelan la piel de los pacientes",
+                    "D) Deben aplicarse solo con la luz apagada para no estropear la onda"
+                ],
+                correct: 1,
+                explanation: "Debido a su carácter ionizante, la exposición a Rayos X debe controlarse para evitar daños celulares innecesarios."
+            },
+            {
+                question: "10. ¿Cuál es el significado de la constante h en la fórmula E = h · f?",
+                options: [
+                    "A) La altura de la onda electromagnética",
+                    "B) La Constante de Planck, que relaciona la frecuencia con la energía de cada fotón",
+                    "C) La velocidad de la luz en metros por segundo",
+                    "D) La temperatura del emisor de radiación"
+                ],
+                correct: 1,
+                explanation: "h es la constante fundamental de Planck (6.626 × 10⁻³⁴ J·s), descubierta para explicar la cuantización de la energía."
+            }
+        ];
+
+        const PROGRESS_MAP = {
+            'START': 0,
+            'MSG': 10,
+            'STUDY_1': 25,
+            'ACT_1': 40,
+            'STUDY_2': 55,
+            'ACT_2': 70,
+            'STUDY_3': 80,
+            'ACT_3': 90,
+            'QUIZ': 95,
+            'REFLECTION': 98,
+            'RESULTS': 100
+        };
+
+        function setStep(newStep) {
+            state.step = newStep;
+            saveState();
+            renderApp();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateHeaderUI() {
+            const nameChip = document.getElementById('header-student-name');
+            const pBar = document.getElementById('progress-bar');
+            
+            if (nameChip) {
+                if (state.studentName && state.studentGroup) {
+                    nameChip.textContent = `${state.studentName} (${state.studentGroup})`;
+                } else {
+                    nameChip.textContent = 'Sin Identificar';
+                }
+            }
+
+            if (pBar) {
+                const pct = PROGRESS_MAP[state.step] || 0;
+                pBar.style.width = `${pct}%`;
+            }
+        }
+
+        function renderApp() {
+            updateHeaderUI();
+            const container = document.getElementById('app-content');
+            if (!container) return;
+
+            switch (state.step) {
+                case 'START':
+                    container.innerHTML = renderStartScreen();
+                    attachStartEvents();
+                    break;
+                case 'MSG':
+                    container.innerHTML = renderMsgScreen();
+                    break;
+                case 'STUDY_1':
+                    container.innerHTML = renderStudy1Screen();
+                    break;
+                case 'ACT_1':
+                    container.innerHTML = renderAct1Screen();
+                    attachAct1Events();
+                    break;
+                case 'STUDY_2':
+                    container.innerHTML = renderStudy2Screen();
+                    break;
+                case 'ACT_2':
+                    container.innerHTML = renderAct2Screen();
+                    attachAct2Events();
+                    break;
+                case 'STUDY_3':
+                    container.innerHTML = renderStudy3Screen();
+                    break;
+                case 'ACT_3':
+                    container.innerHTML = renderAct3Screen();
+                    attachAct3Events();
+                    break;
+                case 'QUIZ':
+                    container.innerHTML = renderQuizScreen();
+                    attachQuizEvents();
+                    break;
+                case 'REFLECTION':
+                    container.innerHTML = renderReflectionScreen();
+                    attachReflectionEvents();
+                    break;
+                case 'RESULTS':
+                    container.innerHTML = renderResultsScreen();
+                    break;
+                default:
+                    container.innerHTML = renderStartScreen();
+                    attachStartEvents();
+            }
+        }
+
+        function renderStartScreen() {
+            return `
+                <div class="card">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <span class="app-badge" style="font-size: 0.85rem; padding: 6px 14px;">Física — Educación Media Superior</span>
+                        <h1 style="margin-top: 12px; color: var(--primary-dark);">LA ENERGÍA EN LOS PROCESOS DE LA VIDA DIARIA</h1>
+                        <h2 style="font-size: 1.05rem; color: var(--text-muted); font-weight: 600; margin-top: 4px;">
+                            PROGRESIÓN 6 — PARTE 2 DE 3
+                        </h2>
+                        <div style="display:inline-block; background: var(--secondary-light); color: var(--secondary); font-weight: 700; font-size: 0.85rem; padding: 4px 12px; border-radius: 12px; margin-top: 8px;">
+                            El Espectro Electromagnético, los Fotones y la Energía
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <strong>📌 Modalidad de Trabajo:</strong> Trabajo autónomo a distancia. Diseñado para completarse 100% individualmente desde tu teléfono celular sin necesidad de conectividad a Internet.
+                    </div>
+
+                    <form id="start-form">
+                        <div class="form-group">
+                            <label for="input-name">Nombre Completo del Estudiante *</label>
+                            <input type="text" id="input-name" placeholder="Ej. Ana María Gómez Pérez" value="${escapeHtml(state.studentName)}" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="input-group">Grupo / Semestre *</label>
+                            <input type="text" id="input-group" placeholder="Ej. 201-B / 2° Semestre" value="${escapeHtml(state.studentGroup)}" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+                            🚀 COMENZAR MI SESIÓN DE ESTUDIO
+                        </button>
+                    </form>
+                </div>
+            `;
+        }
+
+        function attachStartEvents() {
+            const form = document.getElementById('start-form');
+            if (!form) return;
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameVal = document.getElementById('input-name').value.trim();
+                const groupVal = document.getElementById('input-group').value.trim();
+                if (nameVal && groupVal) {
+                    state.studentName = nameVal;
+                    state.studentGroup = groupVal;
+                    if (!state.startTime) {
+                        const now = new Date();
+                        state.startTime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    }
+                    setStep('MSG');
+                }
+            });
+        }
+
+        function renderMsgScreen() {
+            return `
+                <div class="card">
+                    <h2>👋 ¡Bienvenido/a, ${escapeHtml(state.studentName)}!</h2>
+                    <p>
+                        Esta aplicación interactiva sustituye temporalmente nuestra clase presencial debido a la contingencia preventiva por crecientes de ríos en la comunidad.
+                    </p>
+                    <p>
+                        <strong>¿Cómo vas a aprender hoy?</strong><br>
+                        En esta segunda parte de la Progresión 6, explorarás cómo se organiza el <em>Espectro Electromagnético</em>, descubrirás la naturaleza de los <em>fotones</em> y comprenderás por qué algunas radiaciones tienen más energía que otras.
+                    </p>
+
+                    <div class="highlight-box">
+                        💡 <strong>Instrucciones Clave:</strong>
+                        <ul style="margin-left: 18px; margin-top: 6px;">
+                            <li>Avanza a tu propio ritmo (duración aprox. 45 - 60 min).</li>
+                            <li>Lee las microlecturas activamente y resuelve los ejercicios.</li>
+                            <li>Si te equivocas, ¡no pasa nada! Recibirás pistas para corregir.</li>
+                            <li>Al finalizar, obtendrás una <strong>Tarjeta de Evidencia</strong> que deberás fotografiar o capturar para enviarla por WhatsApp a tu profesor.</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="setStep('STUDY_1')">
+                        📖 Entendido, iniciar primera lectura →
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderStudy1Screen() {
+            return `
+                <div class="card">
+                    <span class="app-badge">Microlectura 1 de 3</span>
+                    <h2 style="margin-top: 8px;">1. El Espectro Electromagnético</h2>
+                    
+                    <p>
+                        Aunque nuestros ojos únicamente perciben la <strong>luz visible</strong>, esta representa solo una diminuta fracción de toda la radiación que existe en el Universo. La familia completa de ondas electromagnéticas se denomina <strong>Espectro Electromagnético</strong>.
+                    </p>
+
+                    <!-- SVG DIAGRAM: ELECTROMAGNETIC SPECTRUM -->
+                    <div class="svg-container">
+                        <svg viewBox="0 0 500 160" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="500" height="160" fill="#f8fafc" rx="8" />
+                            
+                            <defs>
+                                <linearGradient id="specGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="25%" stop-color="#06b6d4" />
+                                    <stop offset="45%" stop-color="#10b981" />
+                                    <stop offset="55%" stop-color="#eab308" />
+                                    <stop offset="70%" stop-color="#f97316" />
+                                    <stop offset="100%" stop-color="#ef4444" />
+                                </linearGradient>
+                            </defs>
+
+                            <rect x="20" y="70" width="460" height="24" fill="url(#specGrad)" rx="4"/>
+                            
+                            <text x="28" y="62" font-size="9" font-weight="bold" fill="#1e293b">Radio</text>
+                            <text x="92" y="62" font-size="9" font-weight="bold" fill="#1e293b">Microondas</text>
+                            <text x="170" y="62" font-size="9" font-weight="bold" fill="#1e293b">Infrarrojo</text>
+                            <text x="242" y="62" font-size="9" font-weight="bold" fill="#2563eb">Luz Visible</text>
+                            <text x="318" y="62" font-size="9" font-weight="bold" fill="#1e293b">Ultravioleta</text>
+                            <text x="398" y="62" font-size="9" font-weight="bold" fill="#1e293b">Rayos X</text>
+                            <text x="448" y="62" font-size="9" font-weight="bold" fill="#dc2626">Gamma</text>
+
+                            <path d="M 20 120 Q 45 105 70 120 T 120 120 T 170 120 Q 185 110 200 120 T 230 120 T 260 120 Q 270 112 280 120 T 300 120 Q 308 114 316 120 T 332 120 Q 338 115 344 120 T 356 120 T 368 120 Q 372 116 376 120 T 384 120 T 392 120 T 400 120 T 408 120 T 416 120 Q 420 117 424 120 T 432 120 T 440 120 T 448 120 T 456 120 T 464 120 T 472 120 T 480 120" 
+                                  fill="none" stroke="#1e293b" stroke-width="2"/>
+
+                            <text x="20" y="22" font-size="10" font-weight="bold" fill="#2563eb">← Mayor longitud de onda (λ)</text>
+                            <text x="20" y="36" font-size="10" font-weight="bold" fill="#64748b">Menor frecuencia (f) y energía</text>
+
+                            <text x="310" y="22" font-size="10" font-weight="bold" fill="#dc2626">Menor longitud de onda (λ) →</text>
+                            <text x="310" y="36" font-size="10" font-weight="bold" fill="#dc2626">MAYOR frecuencia (f) y energía →</text>
+                        </svg>
+                    </div>
+
+                    <p>
+                        Todas las ondas electromagnéticas viajan a la velocidad de la luz (<em>c</em> ≈ 300,000 km/s en el vacío), pero difieren en su <strong>frecuencia (f)</strong> —número de oscilaciones por segundo— y su <strong>longitud de onda (λ)</strong> —distancia entre dos crestas consecutivas—.
+                    </p>
+
+                    <div class="alert-box">
+                        💡 <strong>Regla Inversa Fundamental:</strong> A mayor longitud de onda (λ), menor es su frecuencia (f). Y a mayor frecuencia, ¡mayor es la energía que transporta la radiación!
+                    </div>
+
+                    <button class="btn btn-primary" onclick="setStep('ACT_1')">
+                        ✏ Realizar Actividad 1: Ordenar el Espectro →
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderAct1Screen() {
+            const isCorrect = state.act1Correct;
+            const isChecked = state.act1Checked;
+
+            return `
+                <div class="card">
+                    <span class="app-badge">Actividad 1 de 3 — Ordenar Conceptos</span>
+                    <h2 style="margin-top: 8px;">Ordena la Radiación por su Nivel de Energía</h2>
+                    <p>
+                        Utiliza las flechas (⬆ / ⬇) para clasificar las siguientes regiones del espectro electromagnético desde la de <strong>MENOR ENERGÍA (Arriba)</strong> hasta la de <strong>MAYOR ENERGÍA (Abajo)</strong>.
+                    </p>
+
+                    <div class="reorder-list">
+                        ${state.act1UserOrder.map((item, index) => `
+                            <div class="reorder-item">
+                                <span>${index + 1}. ${escapeHtml(item.label)}</span>
+                                <div class="reorder-controls">
+                                    <button class="btn-mini" onclick="moveAct1Item(${index}, -1)" ${index === 0 ? 'disabled' : ''}>⬆</button>
+                                    <button class="btn-mini" onclick="moveAct1Item(${index}, 1)" ${index === state.act1UserOrder.length - 1 ? 'disabled' : ''}>⬇</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${isChecked ? (
+                        isCorrect ? `
+                            <div class="highlight-box" style="background-color: var(--success-light); border-left-color: var(--success); color: var(--success);">
+                                ✅ <strong>¡Excelente trabajo!</strong> Has ordenado correctamente el espectro electromagnético de menor a mayor energía (Ondas de radio → Rayos Gamma).
+                            </div>
+                        ` : `
+                            <div class="alert-box">
+                                ❌ <strong>Algunos elementos no están en la posición correcta.</strong><br>
+                                <em>Pista:</em> Las ondas de radio tienen la menor frecuencia y energía (deben ir arriba de todo), mientras que los rayos Gamma poseen la mayor energía (al final).
+                            </div>
+                        `
+                    ) : ''}
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="checkAct1()">
+                            ${isChecked && !isCorrect ? '🔄 Reintentar' : '✔ Comprobar mi Respuesta'}
+                        </button>
+                        ${isCorrect ? `
+                            <button class="btn btn-secondary" onclick="setStep('STUDY_2')">
+                                Continuar a Microlectura 2 →
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function moveAct1Item(index, direction) {
+            const targetIndex = index + direction;
+            if (targetIndex < 0 || targetIndex >= state.act1UserOrder.length) return;
+            const temp = state.act1UserOrder[index];
+            state.act1UserOrder[index] = state.act1UserOrder[targetIndex];
+            state.act1UserOrder[targetIndex] = temp;
+            state.act1Checked = false;
+            saveState();
+            renderApp();
+        }
+
+        function checkAct1() {
+            state.act1Checked = true;
+            state.act1Attempts++;
+            let correct = true;
+            for (let i = 0; i < state.act1UserOrder.length; i++) {
+                if (state.act1UserOrder[i].energyOrder !== i + 1) {
+                    correct = false;
+                    break;
+                }
+            }
+            state.act1Correct = correct;
+            saveState();
+            renderApp();
+        }
+
+        function renderStudy2Screen() {
+            return `
+                <div class="card">
+                    <span class="app-badge">Microlectura 2 de 3</span>
+                    <h2 style="margin-top: 8px;">2. El Modelo Corpuscular: Fotones y la Ecuación de Planck</h2>
+                    
+                    <p>
+                        A principios del siglo XX, científicos como Max Planck y Albert Einstein descubrieron que la radiación electromagnética no solo se comporta como una onda, sino también como un flujo de paquetes discretos e indivisibles de energía llamados <strong>FOTONES</strong>.
+                    </p>
+
+                    <!-- SVG DIAGRAM: PHOTON ENERGY MODEL -->
+                    <div class="svg-container">
+                        <svg viewBox="0 0 480 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="480" height="140" fill="#f8fafc" rx="8"/>
+                            
+                            <g transform="translate(20, 20)">
+                                <rect width="210" height="100" fill="#ffffff" stroke="#cbd5e1" rx="6"/>
+                                <text x="15" y="24" font-size="11" font-weight="bold" fill="#2563eb">Fotón de Baja Frecuencia</text>
+                                <path d="M 20 60 Q 40 40 60 60 T 100 60 T 140 60" fill="none" stroke="#2563eb" stroke-width="3"/>
+                                <circle cx="150" cy="60" r="6" fill="#2563eb"/>
+                                <text x="15" y="85" font-size="10" fill="#475569">Ej: Onda de Radio / Infrarrojo</text>
+                                <text x="15" y="98" font-size="10" font-weight="bold" fill="#1e293b">Poca Energía (E baja)</text>
+                            </g>
+
+                            <g transform="translate(250, 20)">
+                                <rect width="210" height="100" fill="#ffffff" stroke="#cbd5e1" rx="6"/>
+                                <text x="15" y="24" font-size="11" font-weight="bold" fill="#dc2626">Fotón de Alta Frecuencia</text>
+                                <path d="M 20 60 Q 28 45 36 60 T 52 60 T 68 60 T 84 60 T 100 60 T 116 60 T 132 60" fill="none" stroke="#dc2626" stroke-width="3"/>
+                                <circle cx="140" cy="60" r="8" fill="#dc2626"/>
+                                <text x="15" y="85" font-size="10" fill="#475569">Ej: Rayos X / Rayos Gamma</text>
+                                <text x="15" y="98" font-size="10" font-weight="bold" fill="#dc2626">MUCHA Energía (E muy alta)</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <p>
+                        La energía (<em>E</em>) contenida en un solo fotón está determinada matemáticamente por la célebre <strong>Ecuación de Planck</strong>:
+                    </p>
+
+                    <div style="text-align: center; background-color: var(--accent-light); padding: 14px; border-radius: var(--radius-sm); font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-bottom: 14px;">
+                        E = h · f
+                    </div>
+
+                    <p>
+                        Donde:
+                        <ul style="margin-left: 20px; font-size: 0.9rem;">
+                            <li><strong>E:</strong> Energía del fotón (en Joules).</li>
+                            <li><strong>h:</strong> Constante de Planck (6.626 × 10⁻³⁴ J·s).</li>
+                            <li><strong>f:</strong> Frecuencia de la onda electromagnética (en Hertz).</li>
+                        </ul>
+                    </p>
+
+                    <div class="highlight-box">
+                        🧠 <strong>Conclusión Matemática:</strong> Como <em>h</em> es constante, la energía del fotón depende <u>exclusivamente</u> de la frecuencia (<em>f</em>). ¡A mayor frecuencia, el fotón golpea con mayor energía!
+                    </div>
+
+                    <button class="btn btn-primary" onclick="setStep('ACT_2')">
+                        ✏ Realizar Actividad 2: Comprobar Entendimiento →
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderAct2Screen() {
+            const options = [
+                { id: 0, text: "A) La energía del fotón disminuye a la tercera parte." },
+                { id: 1, text: "B) La energía del fotón también se TRIPLICA exactamente (E_nueva = 3E)." },
+                { id: 2, text: "C) La energía no cambia porque depende de la masa del fotón." },
+                { id: 3, text: "D) La velocidad de la luz se triplica en respuesta." }
+            ];
+
+            return `
+                <div class="card">
+                    <span class="app-badge">Actividad 2 de 3 — Aplicación de Conceptos</span>
+                    <h2 style="margin-top: 8px;">Analiza la Ecuación de Planck</h2>
+                    
+                    <p>
+                        Imagina que una fuente emite radiación electromagnética y, mediante un control, <strong>se triplica la frecuencia (3f)</strong> de la onda. Según la fórmula <em>E = h · f</em>, ¿qué ocurre con la energía (<em>E</em>) de cada fotón?
+                    </p>
+
+                    <div class="options-grid">
+                        ${options.map(opt => `
+                            <div class="option-card ${state.act2Selected === opt.id ? 'selected' : ''}" onclick="selectAct2(${opt.id})">
+                                <div class="option-radio"></div>
+                                <div>${opt.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${state.act2Checked ? (
+                        state.act2Correct ? `
+                            <div class="highlight-box" style="background-color: var(--success-light); border-left-color: var(--success); color: var(--success);">
+                                ✅ <strong>¡Correcto!</strong> Al existir una relación directamente proporcional (<em>E = h · f</em>), triplicar la frecuencia provoca que la energía entregada por cada fotón se triplique.
+                            </div>
+                        ` : `
+                            <div class="alert-box">
+                                ❌ <strong>Respuesta incorrecta.</strong><br>
+                                <em>Pista:</em> Recuerda que <em>h</em> es un número fijo (constante). Si multiplicas <em>f</em> por 3, ¿por cuánto se multiplica el resultado de <em>E</em>?
+                            </div>
+                        `
+                    ) : ''}
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="checkAct2()" ${state.act2Selected === null ? 'disabled' : ''}>
+                            ✔ Comprobar Respuesta
+                        </button>
+                        ${state.act2Correct ? `
+                            <button class="btn btn-secondary" onclick="setStep('STUDY_3')">
+                                Continuar a Microlectura 3 →
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectAct2(id) {
+            state.act2Selected = id;
+            state.act2Checked = false;
+            saveState();
+            renderApp();
+        }
+
+        function checkAct2() {
+            state.act2Checked = true;
+            state.act2Attempts++;
+            state.act2Correct = (state.act2Selected === 1);
+            saveState();
+            renderApp();
+        }
+
+        function renderStudy3Screen() {
+            return `
+                <div class="card">
+                    <span class="app-badge">Microlectura 3 de 3</span>
+                    <h2 style="margin-top: 8px;">3. Radiación Ionizante vs. No Ionizante</h2>
+                    
+                    <p>
+                        No toda la radiación electromagnética produce los mismos efectos en la materia o en los seres vivos. La diferencia crucial radica en si los fotones tienen la suficiente energía para <strong>ionizar átomos</strong>.
+                    </p>
+
+                    <!-- SVG DIAGRAM: IONIZATION PROCESS -->
+                    <div class="svg-container">
+                        <svg viewBox="0 0 480 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="480" height="150" fill="#f8fafc" rx="8"/>
+                            
+                            <g transform="translate(10, 15)">
+                                <rect width="220" height="120" fill="#ffffff" stroke="#cbd5e1" rx="6"/>
+                                <text x="12" y="20" font-size="10" font-weight="bold" fill="#16a34a">RADIACIÓN NO IONIZANTE</text>
+                                <text x="12" y="32" font-size="9" fill="#64748b">(Radio, Microondas, Infrarrojo, Luz)</text>
+                                
+                                <circle cx="110" cy="75" r="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                                <text x="102" y="79" font-size="9" font-weight="bold" fill="#1e293b">Átomo</text>
+                                <circle cx="150" cy="75" r="5" fill="#eab308"/>
+                                
+                                <path d="M 20 75 Q 35 65 50 75 T 80 75" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+                                <text x="12" y="115" font-size="8.5" fill="#15803d">Solo hace vibrar/calentar la materia</text>
+                            </g>
+
+                            <g transform="translate(250, 15)">
+                                <rect width="220" height="120" fill="#ffffff" stroke="#fee2e2" rx="6"/>
+                                <text x="12" y="20" font-size="10" font-weight="bold" fill="#dc2626">RADIACIÓN IONIZANTE</text>
+                                <text x="12" y="32" font-size="9" fill="#64748b">(UV lejano, Rayos X, Gamma)</text>
+                                
+                                <circle cx="100" cy="75" r="14" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                                <text x="92" y="79" font-size="9" font-weight="bold" fill="#1e293b">Átomo</text>
+                                
+                                <circle cx="180" cy="45" r="5" fill="#eab308"/>
+                                <path d="M 140 70 L 175 48" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+                                <text x="155" y="38" font-size="8" font-weight="bold" fill="#dc2626">¡Electrón arrancado!</text>
+                                
+                                <path d="M 20 75 Q 30 60 40 75 T 60 75 T 80 75" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+                                <text x="12" y="115" font-size="8.5" fill="#b91c1c">Rompe enlaces moleculares y ADN</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <p>
+                        1. <strong>Radiación No Ionizante:</strong> Sus fotones poseen baja frecuencia y energía. Al chocar con las moléculas (por ejemplo, el agua de los alimentos en un microondas o la radiación del celular), solo hacen que estas roten o vibren, incrementando la temperatura, pero <u>sin alterar su estructura química</u>.
+                    </p>
+                    <p>
+                        2. <strong>Radiación Ionizante:</strong> Formada por fotones de muy alta frecuencia (UV lejano, Rayos X y Rayos Gamma). Tienen energía suficiente para arrancar electrones de los átomos. Esto altera la química molecular y requiere normas estrictas de protección radiológica.
+                    </p>
+
+                    <button class="btn btn-primary" onclick="setStep('ACT_3')">
+                        ✏ Realizar Actividad 3: Clasificación Interactiva →
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderAct3Screen() {
+            const nonIonizingList = state.act3Bank.filter(item => state.act3NonIonizingSlots.includes(item.id));
+            const ionizingList = state.act3Bank.filter(item => state.act3IonizingSlots.includes(item.id));
+            const unassignedList = state.act3Bank.filter(item => !state.act3NonIonizingSlots.includes(item.id) && !state.act3IonizingSlots.includes(item.id));
+
+            return `
+                <div class="card">
+                    <span class="app-badge">Actividad 3 de 3 — Clasificación Táctil</span>
+                    <h2 style="margin-top: 8px;">Clasifica los Tipos de Radiación</h2>
+                    
+                    <p>
+                        Toca una tarjeta del banco y luego toca el contenedor correcto (No Ionizante o Ionizante) para colocarla.
+                    </p>
+
+                    <div class="drop-zone-header">📦 Banco de Palabras/Ejemplos:</div>
+                    <div class="interactive-bank">
+                        ${unassignedList.length === 0 ? '<span style="font-size:0.85rem; color:var(--text-muted);">¡Todos los elementos clasificados!</span>' : ''}
+                        ${unassignedList.map(item => `
+                            <div class="chip ${state.act3SelectedChip === item.id ? 'selected' : ''}" onclick="selectAct3Chip('${item.id}')">
+                                ${escapeHtml(item.text)}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="drop-zone" onclick="placeAct3Chip('non-ionizing')" style="border-color: #16a34a; background-color: #f0fdf4;">
+                        <div>
+                            <div class="drop-zone-header" style="color: #16a34a;">🟢 Radiación NO IONIZANTE (Toca aquí para colocar)</div>
+                            <div class="drop-zone-content">
+                                ${nonIonizingList.map(item => `
+                                    <div class="chip" onclick="event.stopPropagation(); removeAct3Chip('${item.id}', 'non-ionizing');">
+                                        ${escapeHtml(item.text)} ✖
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="drop-zone" onclick="placeAct3Chip('ionizing')" style="border-color: #dc2626; background-color: #fef2f2;">
+                        <div>
+                            <div class="drop-zone-header" style="color: #dc2626;">🔴 Radiación IONIZANTE (Toca aquí para colocar)</div>
+                            <div class="drop-zone-content">
+                                ${ionizingList.map(item => `
+                                    <div class="chip" onclick="event.stopPropagation(); removeAct3Chip('${item.id}', 'ionizing');">
+                                        ${escapeHtml(item.text)} ✖
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    ${state.act3Checked ? (
+                        state.act3Correct ? `
+                            <div class="highlight-box" style="background-color: var(--success-light); border-left-color: var(--success); color: var(--success);">
+                                ✅ <strong>¡Clasificación Perfecta!</strong> Has diferenciado correctamente las fuentes de radiación de baja energía (No Ionizantes) de aquellas con fotones capaces de alterar enlaces atómicos (Ionizantes).
+                            </div>
+                        ` : `
+                            <div class="alert-box">
+                                ⚠️ <strong>Hay elementos en la categoría equivocada o faltantes.</strong><br>
+                                <em>Recuerda:</em> Radio, Infrarrojo y Luz Visible son NO ionizantes. UV de alta frecuencia, Rayos X y Rayos Gamma son IONIZANTES.
+                            </div>
+                        `
+                    ) : ''}
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="checkAct3()">
+                            ✔ Comprobar Clasificación
+                        </button>
+                        ${state.act3Correct ? `
+                            <button class="btn btn-secondary" onclick="setStep('QUIZ')">
+                                📝 Avanzar a la Comprobación (Quiz) →
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectAct3Chip(id) {
+            state.act3SelectedChip = id;
+            renderApp();
+        }
+
+        function placeAct3Chip(targetCat) {
+            if (!state.act3SelectedChip) return;
+            
+            state.act3NonIonizingSlots = state.act3NonIonizingSlots.filter(id => id !== state.act3SelectedChip);
+            state.act3IonizingSlots = state.act3IonizingSlots.filter(id => id !== state.act3SelectedChip);
+
+            if (targetCat === 'non-ionizing') {
+                state.act3NonIonizingSlots.push(state.act3SelectedChip);
+            } else {
+                state.act3IonizingSlots.push(state.act3SelectedChip);
+            }
+
+            state.act3SelectedChip = null;
+            state.act3Checked = false;
+            saveState();
+            renderApp();
+        }
+
+        function removeAct3Chip(id, fromCat) {
+            if (fromCat === 'non-ionizing') {
+                state.act3NonIonizingSlots = state.act3NonIonizingSlots.filter(i => i !== id);
+            } else {
+                state.act3IonizingSlots = state.act3IonizingSlots.filter(i => i !== id);
+            }
+            state.act3Checked = false;
+            saveState();
+            renderApp();
+        }
+
+        function checkAct3() {
+            state.act3Checked = true;
+            state.act3Attempts++;
+
+            let allCorrect = true;
+            state.act3Bank.forEach(item => {
+                if (item.cat === 'non-ionizing' && !state.act3NonIonizingSlots.includes(item.id)) allCorrect = false;
+                if (item.cat === 'ionizing' && !state.act3IonizingSlots.includes(item.id)) allCorrect = false;
+            });
+
+            state.act3Correct = allCorrect;
+            saveState();
+            renderApp();
+        }
+
+        function renderQuizScreen() {
+            const qIndex = state.quizCurrentIndex;
+            const qData = QUIZ_QUESTIONS[qIndex];
+            const currentAnswer = state.quizAnswers[qIndex];
+            const answeredCount = state.quizAnswers.filter(a => a !== null).length;
+
+            return `
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span class="app-badge">Evaluación Formativa</span>
+                        <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted);">
+                            Pregunta ${qIndex + 1} de 10
+                        </span>
+                    </div>
+
+                    <div class="quiz-nav-grid">
+                        ${QUIZ_QUESTIONS.map((_, idx) => `
+                            <div class="quiz-nav-item ${idx === qIndex ? 'current' : ''} ${state.quizAnswers[idx] !== null ? 'answered' : ''}" onclick="jumpQuizQuestion(${idx})">
+                                ${idx + 1}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <h3 style="font-size:1rem; margin: 14px 0;">${escapeHtml(qData.question)}</h3>
+
+                    <div class="options-grid">
+                        ${qData.options.map((optText, optIdx) => `
+                            <div class="option-card ${currentAnswer === optIdx ? 'selected' : ''}" onclick="selectQuizAnswer(${qIndex}, ${optIdx})">
+                                <div class="option-radio"></div>
+                                <div>${escapeHtml(optText)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; gap:10px;">
+                        <button class="btn btn-outline" onclick="prevQuizQuestion()" ${qIndex === 0 ? 'disabled' : ''}>
+                            ⬅ Anterior
+                        </button>
+                        
+                        ${qIndex < 9 ? `
+                            <button class="btn btn-primary" onclick="nextQuizQuestion()">
+                                Siguiente ➡
+                            </button>
+                        ` : `
+                            <button class="btn btn-secondary" onclick="submitQuiz()" ${answeredCount < 10 ? 'disabled' : ''}>
+                                🏁 Finalizar Evaluación
+                            </button>
+                        `}
+                    </div>
+
+                    ${answeredCount < 10 && qIndex === 9 ? `
+                        <p style="font-size:0.8rem; color:var(--warning); margin-top:8px; text-align:center;">
+                            ⚠️ Te faltan por responder ${10 - answeredCount} preguntas antes de finalizar.
+                        </p>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function jumpQuizQuestion(idx) {
+            state.quizCurrentIndex = idx;
+            saveState();
+            renderApp();
+        }
+
+        function selectQuizAnswer(qIdx, optionIdx) {
+            state.quizAnswers[qIdx] = optionIdx;
+            saveState();
+            renderApp();
+        }
+
+        function prevQuizQuestion() {
+            if (state.quizCurrentIndex > 0) {
+                state.quizCurrentIndex--;
+                saveState();
+                renderApp();
+            }
+        }
+
+        function nextQuizQuestion() {
+            if (state.quizCurrentIndex < 9) {
+                state.quizCurrentIndex++;
+                saveState();
+                renderApp();
+            }
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            QUIZ_QUESTIONS.forEach((q, idx) => {
+                if (state.quizAnswers[idx] === q.correct) {
+                    score++;
+                }
+            });
+            state.quizScore = score;
+            state.quizSubmitted = true;
+            saveState();
+            setStep('REFLECTION');
+        }
+
+        function renderReflectionScreen() {
+            const isMinLength = state.finalReflection.trim().length >= 30;
+
+            return `
+                <div class="card">
+                    <span class="app-badge">Cierre Metacognitivo</span>
+                    <h2 style="margin-top: 8px;">🧠 Reflexión Final de Aprendizaje</h2>
+                    
+                    <p>
+                        Para concluir la sesión y sintetizar lo aprendido, redacta una breve conclusión en tus propias palabras respondiendo a las preguntas:
+                    </p>
+
+                    <div class="highlight-box">
+                        <strong>¿Cuál es la idea principal que aprendiste hoy sobre los fotones, el espectro electromagnético y su energía? ¿Qué concepto te pareció más interesante o desafiante?</strong>
+                    </div>
+
+                    <form id="reflection-form">
+                        <div class="form-group">
+                            <label for="reflection-text">Escribe tu reflexión (mínimo 30 caracteres):</label>
+                            <textarea id="reflection-text" placeholder="Escribe aquí tu explicación..." required>${escapeHtml(state.finalReflection)}</textarea>
+                            <div style="font-size: 0.75rem; text-align: right; color: ${isMinLength ? 'var(--success)' : 'var(--text-muted)'}; font-weight:700;">
+                                Caracteres: <span id="char-count">${state.finalReflection.length}</span> / 30 mín.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hardest-select">¿Qué concepto te resultó más complejo?</label>
+                            <select id="hardest-select">
+                                <option value="La constante h y E=h*f" ${state.hardestConcept === 'La constante h y E=h*f' ? 'selected' : ''}>La fórmula E = h · f</option>
+                                <option value="Orden de las regiones del espectro" ${state.hardestConcept === 'Orden de las regiones del espectro' ? 'selected' : ''}>El orden del Espectro Electromagnético</option>
+                                <option value="Diferencia ionizante vs no ionizante" ${state.hardestConcept === 'Diferencia ionizante vs no ionizante' ? 'selected' : ''}>Radiación Ionizante vs No Ionizante</option>
+                                <option value="Ninguno, todo quedó claro" ${state.hardestConcept === 'Ninguno, todo quedó claro' ? 'selected' : ''}>Ninguno, todo estuvo muy claro</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btn-submit-reflection" ${!isMinLength ? 'disabled' : ''}>
+                            🎓 Generar mi Tarjeta de Evidencia Final
+                        </button>
+                    </form>
+                </div>
+            `;
+        }
+
+        function attachReflectionEvents() {
+            const textarea = document.getElementById('reflection-text');
+            const countLabel = document.getElementById('char-count');
+            const btn = document.getElementById('btn-submit-reflection');
+            const select = document.getElementById('hardest-select');
+
+            if (textarea) {
+                textarea.addEventListener('input', (e) => {
+                    const text = e.target.value;
+                    state.finalReflection = text;
+                    if (countLabel) countLabel.textContent = text.length;
+                    if (btn) btn.disabled = text.trim().length < 30;
+                    saveState();
+                });
+            }
+
+            if (select) {
+                select.addEventListener('change', (e) => {
+                    state.hardestConcept = e.target.value;
+                    saveState();
+                });
+            }
+
+            const form = document.getElementById('reflection-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (state.finalReflection.trim().length >= 30) {
+                        const now = new Date();
+                        state.finishTime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        setStep('RESULTS');
+                    }
+                });
+            }
+        }
+
+        function renderResultsScreen() {
+            const pct = Math.round((state.quizScore / 10) * 100);
+
+            return `
+                <div class="card">
+                    <div style="text-align: center; margin-bottom: 12px;">
+                        <span class="app-badge" style="background-color: var(--success-light); color: var(--success);">
+                            ✓ ACTIVIDAD COMPLETADA CON ÉXITO
+                        </span>
+                    </div>
+
+                    <div class="evidence-card">
+                        <div class="evidence-header">
+                            <h2>LA ENERGÍA EN LOS PROCESOS DE LA VIDA DIARIA</h2>
+                            <div class="subtitle">PROGRESIÓN 6 — PARTE 2 DE 3: ESPECTRO Y FOTONES</div>
+                            <div style="font-size:0.75rem; font-weight:800; color:var(--primary); margin-top:4px;">
+                                COMPROBACIÓN DE TRABAJO AUTÓNOMO EN CASA
+                            </div>
+                        </div>
+
+                        <div class="evidence-row">
+                            <span class="evidence-label">👤 Estudiante:</span>
+                            <span class="evidence-value">${escapeHtml(state.studentName)}</span>
+                        </div>
+                        <div class="evidence-row">
+                            <span class="evidence-label">🏫 Grupo:</span>
+                            <span class="evidence-value">${escapeHtml(state.studentGroup)}</span>
+                        </div>
+                        <div class="evidence-row">
+                            <span class="evidence-label">📅 Fecha de Término:</span>
+                            <span class="evidence-value">${state.finishTime || 'Fecha local'}</span>
+                        </div>
+                        <div class="evidence-row">
+                            <span class="evidence-label">📊 Avance Global:</span>
+                            <span class="evidence-value" style="color:var(--success);">100% Completado</span>
+                        </div>
+
+                        <div class="evidence-score-badge">
+                            <div class="score-num">${state.quizScore} / 10</div>
+                            <div class="score-label">Calificación de Comprobación (${pct}%)</div>
+                        </div>
+
+                        <div>
+                            <span class="evidence-label">🧠 Reflexión Sintética:</span>
+                            <div class="evidence-reflection">
+                                "${escapeHtml(state.finalReflection)}"
+                            </div>
+                        </div>
+
+                        <div class="whatsapp-banner">
+                            📸 TOMA UNA CAPTURA DE ESTA PANTALLA Y ENVÍALA A TU PROFESOR POR WHATSAPP
+                        </div>
+                    </div>
+
+                    <div style="margin-top:24px;">
+                        <h3>🔎 Revisión de Respuestas del Quiz</h3>
+                        <div style="margin-top:10px;">
+                            ${QUIZ_QUESTIONS.map((q, idx) => {
+                                const userAns = state.quizAnswers[idx];
+                                const isRight = (userAns === q.correct);
+                                return `
+                                    <div class="review-item">
+                                        <div class="review-q-title">
+                                            ${idx + 1}. ${escapeHtml(q.question)}
+                                        </div>
+                                        <div class="review-ans" style="color: ${isRight ? 'var(--success)' : 'var(--danger)'}; font-weight:700;">
+                                            Tu respuesta: ${userAns !== null ? escapeHtml(q.options[userAns]) : 'Sin responder'} 
+                                            ${isRight ? '✅' : '❌'}
+                                        </div>
+                                        ${!isRight ? `
+                                            <div class="review-ans" style="color: var(--success); font-weight:700;">
+                                                Respuesta correcta: ${escapeHtml(q.options[q.correct])}
+                                            </div>
+                                        ` : ''}
+                                        <div class="review-exp">
+                                            💡 <em>Explicación:</em> ${escapeHtml(q.explanation)}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSavedState();
+            renderApp();
+        });
+    </script>
+</body>
+</html>
